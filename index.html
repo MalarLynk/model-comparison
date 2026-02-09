@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Model Comparison</title>
-</head>
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
 
     <div id="carCompare">
@@ -28,7 +30,7 @@
 
         <div class="table-outer">
             <table>
-                <thead id="tableHead">
+                <thead>
                     <tr>
                         <th>Specification</th>
                         <th>CX11</th>
@@ -37,7 +39,6 @@
                         <th>DX11</th>
                     </tr>
                 </thead>
-
                 <tbody id="tableBody">
                     <tr>
                         <th>Launch Date</th>
@@ -46,7 +47,6 @@
                         <td>11 October 2024</td>
                         <td>26 February 2025</td>
                     </tr>
-
                     <tr>
                         <th>Motor Type</th>
                         <td>Hybrid</td>
@@ -54,7 +54,6 @@
                         <td>Electric</td>
                         <td>Hybrid</td>
                     </tr>
-
                     <tr>
                         <th>Variant</th>
                         <td>Core</td>
@@ -62,7 +61,6 @@
                         <td>Core</td>
                         <td>More</td>
                     </tr>
-
                     <tr>
                         <th>Colors</th>
                         <td>Blue, Black</td>
@@ -70,7 +68,6 @@
                         <td>Crystal White, Grey Grid, Cosmic Blue</td>
                         <td>Storm Gray, Sparkling Black, Sunset Copper</td>
                     </tr>
-
                     <tr>
                         <th>Towbar</th>
                         <td>With / Without</td>
@@ -78,204 +75,19 @@
                         <td>With / Without</td>
                         <td>With / Without</td>
                     </tr>
-
-                    <tr>
-                        <th>Engine</th>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-
-                    <tr>
-                        <th>Seats</th>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-
-                    <tr>
-                        <th>Price</th>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-
-                    <tr>
-                        <th>Warranty</th>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-
-                    <tr>
-                        <th>Fuel Economy</th>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-
-                    <tr>
-                        <th>Top Speed</th>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-
-                    <tr>
-                        <th>0-100 km/h</th>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
+                    <tr><th>Engine</th><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                    <tr><th>Seats</th><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                    <tr><th>Price</th><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                    <tr><th>Warranty</th><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                    <tr><th>Fuel Economy</th><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                    <tr><th>Top Speed</th><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+                    <tr><th>0-100 km/h</th><td>-</td><td>-</td><td>-</td><td>-</td></tr>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <style>
-        #carCompare {
-            font-family: Arial, sans-serif;
-            max-width: 1000px;
-            margin: auto;
-            padding: 20px;
-        }
-
-        .title {
-            text-align: center;
-            margin-bottom: 6px;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 25px;
-        }
-
-        .filters {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-            .filters select {
-                padding: 10px 14px;
-                border-radius: 6px;
-                border: 1px solid #ccc;
-                font-size: 14px;
-                min-width: 200px;
-            }
-
-        .table-outer {
-            overflow-x: auto;
-            border-radius: 10px;
-            box-shadow: 0 10px 24px rgba(0,0,0,0.08);
-            background: #fff;
-        }
-
-        table {
-            min-width: 1200px;
-            width: 100%;
-            border-collapse: collapse;
-            table-layout: fixed;
-        }
-
-        thead {
-            display: table;
-            width: 100%;
-            table-layout: fixed;
-        }
-
-            thead th {
-                background: #f5f7fa;
-                padding: 14px;
-                font-size: 14px;
-                text-align: center;
-                border-bottom: 1px solid #ddd;
-                white-space: nowrap;
-            }
-
-        tbody {
-            display: block;
-            height: 260px;
-            overflow-y: scroll;
-            width: 100%;
-        }
-
-            tbody tr {
-                display: table;
-                width: 100%;
-                table-layout: fixed;
-            }
-
-            tbody td,
-            tbody th {
-                padding: 14px;
-                font-size: 14px;
-                border-bottom: 1px solid #eee;
-                text-align: center;
-            }
-
-            tbody th {
-                background: #fafafa;
-                text-align: left;
-                font-weight: 600;
-                white-space: nowrap;
-            }
-
-            tbody tr:nth-child(even) {
-                background: #fcfcfc;
-            }
-    </style>
-
-    <script>
-const motorFilter = document.getElementById("motorFilter");
-const variantFilter = document.getElementById("variantFilter");
-
-motorFilter.addEventListener("change", filterColumns);
-variantFilter.addEventListener("change", filterColumns);
-
-function filterColumns() {
-  const motorValue = motorFilter.value;
-  const variantValue = variantFilter.value;
-
-  const rows = document.querySelectorAll("#tableBody tr");
-
-  let motorRow, variantRow;
-
-  rows.forEach(row => {
-    const label = row.querySelector("th")?.innerText.trim();
-    if (label === "Motor Type") motorRow = row;
-    if (label === "Variant") variantRow = row;
-  });
-
-  if (!motorRow || !variantRow) return;
-
-  const motorCells = motorRow.querySelectorAll("td");
-  const variantCells = variantRow.querySelectorAll("td");
-
-  for (let i = 0; i < motorCells.length; i++) {
-    const motorMatch = !motorValue || motorCells[i].innerText.trim() === motorValue;
-    const variantMatch = !variantValue || variantCells[i].innerText.trim() === variantValue;
-
-    toggleColumn(i + 1, motorMatch && variantMatch);
-  }
-}
-
-function toggleColumn(colIndex, show) {
-  document.querySelectorAll("table tr").forEach(row => {
-    const cell = row.children[colIndex];
-    if (cell) cell.style.display = show ? "" : "none";
-  });
-}
-    </script>
-
+    <!-- JS -->
+    <script src="script.js" defer></script>
 </body>
 </html>

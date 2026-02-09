@@ -1,0 +1,155 @@
+﻿/* Animated gradient background */
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: rgb(28, 25, 25);
+    background-image: linear-gradient( -45deg, rgba(87, 235, 205, 0.1), rgba(94, 31, 242, 0.1), rgba(87, 235, 205, 0.1), rgba(175, 59, 232, 0.1) );
+    background-size: 400% 400%;
+    animation: gradient 12s ease infinite;
+    padding: 2in; /* 2-inch padding on all sides */
+}
+
+/* Gradient animation */
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Container */
+#carCompare {
+    font-family: Arial, sans-serif;
+    width: 100%;
+    height: 100%;
+    background: #1c1c1c; /* dark table background */
+    color: #fff; /* white font */
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Titles */
+.title {
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #ccc;
+    margin-bottom: 25px;
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+    .filters select {
+        padding: 10px 14px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        min-width: 200px;
+        background: #333;
+        color: #fff;
+    }
+
+/* Table container */
+.table-outer {
+    overflow-x: auto;
+    overflow-y: auto;
+    border-radius: 10px;
+    height: calc(100% - 120px); /* adjust for filters and title */
+}
+
+/* Table */
+table {
+    min-width: 1200px;
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    color: #fff;
+}
+
+/* Head */
+thead {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+    thead th {
+        background: #2c2c2c;
+        padding: 14px;
+        font-size: 14px;
+        text-align: center;
+        border-bottom: 1px solid #555;
+        white-space: nowrap;
+    }
+
+/* Body */
+tbody {
+    display: block;
+    height: 100%;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+    tbody tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    tbody td,
+    tbody th {
+        padding: 14px;
+        font-size: 14px;
+        border-bottom: 1px solid #555;
+        text-align: center;
+        color: #fff;
+    }
+
+    tbody th {
+        background: #222;
+        text-align: left;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    /* Zebra stripes */
+    tbody tr:nth-child(even) {
+        background: #1a1a1a;
+    }
+
+/* Scrollbar styling */
+.table-outer::-webkit-scrollbar {
+    width: 10px;
+}
+
+.table-outer::-webkit-scrollbar-track {
+    background: #1B1E2D7D;
+    border-radius: 10px;
+}
+
+.table-outer::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #EEA9CB 0%, #72C9B5 100%);
+    border-radius: 100px;
+}
+
+    .table-outer::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(100deg, #EEA9CB 0%, #72C9B5 50%);
+    }
