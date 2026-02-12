@@ -1,155 +1,364 @@
-﻿/* Animated gradient background */
-body {
+﻿/* ================== Global Styles ================== */
+html, body {
     margin: 0;
-    min-height: 100vh;
-    background-color: rgb(28, 25, 25);
-    background-image: linear-gradient( -45deg, rgba(87, 235, 205, 0.1), rgba(94, 31, 242, 0.1), rgba(87, 235, 205, 0.1), rgba(175, 59, 232, 0.1) );
-    background-size: 400% 400%;
-    animation: gradient 12s ease infinite;
-    padding: 2in; /* 2-inch padding on all sides */
-}
-
-/* Gradient animation */
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-/* Container */
-#carCompare {
-    font-family: Arial, sans-serif;
     width: 100%;
     height: 100%;
-    background: #1c1c1c; /* dark table background */
-    color: #fff; /* white font */
-    border-radius: 10px;
-    padding: 20px;
+    overflow: hidden;
+    background: #000;
+}
+
+body {
+    display: grid;
+    place-items: center;
+    font-family: Arial, sans-serif;
+}
+
+/* ================== Main Container ================== */
+#carCompare {
+    width: 1600px;
+    max-width: calc(100vw - 40px);
+    height: 900px;
+    max-height: calc(100vh - 40px);
+    background: #0b0d14;
+    color: #fff;
+    border-radius: 50px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,.7);
 }
 
 /* Titles */
 .title {
     text-align: center;
-    margin-bottom: 6px;
+    margin: 0 0 6px;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 .subtitle {
     text-align: center;
-    color: #ccc;
-    margin-bottom: 25px;
+    color: #b5b5b5;
+    margin: 0 0 20px;
+    font-size: 15px;
+    font-weight: 400;
 }
 
-/* Filters */
+/* ================== Filters ================== */
 .filters {
-    display: flex;
-    gap: 16px;
+    display: inline-flex;
     justify-content: center;
-    margin-bottom: 20px;
+    align-items: center;
+    gap: 14px;
+    background: #ffffff;
+    padding: 10px 18px;
+    border-radius: 50px;
+    box-shadow: 0 8px 20px rgba(0,0,0,.2);
+    margin: 0 auto 18px auto;
 }
 
-    .filters select {
-        padding: 10px 14px;
-        border-radius: 6px;
-        border: 1px solid #ccc;
-        font-size: 14px;
-        min-width: 200px;
-        background: #333;
-        color: #fff;
-    }
+.filter-wrapper { position: relative; }
 
-/* Table container */
-.table-outer {
-    overflow-x: auto;
-    overflow-y: auto;
-    border-radius: 10px;
-    height: calc(100% - 120px); /* adjust for filters and title */
+.filters select {
+    appearance: none;
+    height: 38px;
+    padding: 0 44px 0 18px;
+    min-width: 160px;
+    border-radius: 50px;
+    border: 1px solid #ddd;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all .2s ease;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='18' viewBox='0 0 24 24' width='18' xmlns='http://www.w3.org/2000/svg'><path d='M7 9l5 6 5-6z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 16px;
 }
 
-/* Table */
+.filters select:hover {
+    background-color: #e5e5e5;
+}
+
+.filters select:focus {
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #000000;
+    outline: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 9l5 6 5-6z'/></svg>");
+}
+
+/* ================== Table Wrapper ================== */
+.table-wrapper {
+    flex: 1 1 auto;        /* allow the wrapper to grow and shrink */
+    border-radius: 12px;
+    overflow: hidden;      /* hide any outer overflow */
+    background: #0f1116;
+    display: flex;          /* use flex to allow scroll inside */
+    flex-direction: column; /* so table-scroll fills wrapper vertically */
+}
+
+.table-scroll {
+    flex: 1 1 auto;        /* fill available height */
+    overflow: auto;        /* enable scrolling */
+    background: #0f1116;   /* same as wrapper */
+}
+
+/* ================== Table ================== */
 table {
-    min-width: 1200px;
-    width: 100%;
     border-collapse: collapse;
-    table-layout: fixed;
+    min-width: 1200px;
+    width: max-content;
+    min-width: 100%;
     color: #fff;
+
+        /* ✅ Animated Gradient Background */
+    background: linear-gradient(-45deg,
+        rgba(87, 235, 205, 0.15),
+        rgba(94, 31, 242, 0.15),
+        rgba(87, 235, 205, 0.15),
+        rgba(175, 59, 232, 0.15)
+    );
+    background-size: 400% 400%;
+    animation: gradient 14s ease infinite;
 }
 
-/* Head */
-thead {
-    display: table;
+/* Fixed column widths */
+table th:not(.sticky-col),
+table td:not(.sticky-col) {
+    min-width: 220px;
+    max-width:220px;
+    width:220px;
+}
+
+table .sticky-col {
+    min-width:180px;
+    max-width:180px;
+    width:180px;
+}
+
+/* Sticky header */
+thead th {
+    position: sticky;
+    top: 0;
+    background: rgba(25,25,40,.95);
+    z-index: 10;
+    border-bottom: 1px solid rgba(255,255,255,.15);
+}
+
+/* Sticky left column */
+.sticky-col {
+    position: sticky;
+    left:0;
+    background: rgba(22,24,36,.95);
+    z-index:5;
+}
+
+.sticky-top.sticky-col {
+    z-index:15;
+}
+
+/* Cells */
+th, td {
+    padding:14px 18px;
+    font-size:14px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    border-right:1px solid rgba(255,255,255,0.05);
+    text-align:center;
+    white-space: nowrap;
+}
+
+tbody th {
+    text-align:left;
+    font-weight:600;
+}
+
+tbody tr:nth-child(even) td {
+    background: rgba(255,255,255,0.02);
+}
+
+/* ================== SECTION HEADER FIX ================== */
+
+.section-header th {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/* Override sticky background for section header */
+.section-header .sticky-col {
+    background: #ffffff !important;
+    color: #000000 !important;
+    z-index: 15;
+}
+
+/* Flex layout inside header */
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    table-layout: fixed;
 }
 
-    thead th {
-        background: #2c2c2c;
-        padding: 14px;
-        font-size: 14px;
-        text-align: center;
-        border-bottom: 1px solid #555;
-        white-space: nowrap;
-    }
+/* Toggle button */
+.toggle-section {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    background: #ffffff;
+    color: #000000;
 
-/* Body */
-tbody {
-    display: block;
-    height: 100%;
-    overflow-y: scroll;
-    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: all 0.25s ease;
 }
 
-    tbody tr {
-        display: table;
-        width: 100%;
-        table-layout: fixed;
-    }
-
-    tbody td,
-    tbody th {
-        padding: 14px;
-        font-size: 14px;
-        border-bottom: 1px solid #555;
-        text-align: center;
-        color: #fff;
-    }
-
-    tbody th {
-        background: #222;
-        text-align: left;
-        font-weight: 600;
-        white-space: nowrap;
-    }
-
-    /* Zebra stripes */
-    tbody tr:nth-child(even) {
-        background: #1a1a1a;
-    }
-
-/* Scrollbar styling */
-.table-outer::-webkit-scrollbar {
-    width: 10px;
+.toggle-section:hover {
+    background: #000;
+    color: #fff;
+    box-shadow:
+        0 0 8px rgba(0,0,0,0.4),
+        0 0 18px rgba(87,235,205,0.6);
+    transform: scale(1.12);
 }
 
-.table-outer::-webkit-scrollbar-track {
-    background: #1B1E2D7D;
-    border-radius: 10px;
+/* ================== Collapsible ================== */
+
+tbody tr {
+    height: 48px;
 }
 
-.table-outer::-webkit-scrollbar-thumb {
+.section-row td,
+.section-row th {
+    transition: opacity .25s ease;
+}
+
+.section-row.collapsed td,
+.section-row.collapsed th {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ================== Scrollbar ================== */
+.table-scroll::-webkit-scrollbar {
+    width:10px;
+    height:10px;
+}
+
+.table-scroll::-webkit-scrollbar-track {
+    background: rgba(0,0,0,.25);
+    border-radius:10px;
+}
+
+.table-scroll::-webkit-scrollbar-thumb {
     background: linear-gradient(180deg, #EEA9CB 0%, #72C9B5 100%);
-    border-radius: 100px;
+    border-radius:100px;
 }
 
-    .table-outer::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(100deg, #EEA9CB 0%, #72C9B5 50%);
-    }
+.table-scroll::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(100deg, #EEA9CB 0%, #72C9B5 50%);
+}
+
+.logo-container {
+    text-align: center; /* center the logo */
+    margin-bottom: 12px; /* spacing between logo and title */
+}
+
+.logo {
+    max-width: 100px; /* adjust to fit your design */
+    height: auto;      /* maintain aspect ratio */
+}
+
+.model-images-row td {
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.model-images-row .model-img {
+    max-width: 120px;   /* adjust as needed */
+    height: auto;
+    border-radius: 10px; /* optional: rounded corners */
+    transition: transform 0.3s ease;
+}
+
+.model-images-row .model-img:hover {
+    transform: scale(1.05); /* subtle zoom on hover */
+}
+
+/* Lightbox overlay */
+/* ================== Lightbox overlay ================== */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.8); /* grayed out background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    overflow: hidden; /* important to prevent scrollbars */
+}
+
+.lightbox img {
+    width: auto;
+    height: auto;
+    max-width: 90vw;   /* scale to 90% of viewport width */
+    max-height: 90vh;  /* scale to 90% of viewport height */
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    object-fit: contain;
+}
+
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: hidden;  <-- remove this line */
+    background: #000;
+}
+
+.lightbox.hidden {
+    display: none; /* hide when not active */
+}
+
+/* Close button in corner */
+#closeLightbox {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    background: #ffffff;
+    color: #000;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+}
+
+#closeLightbox:hover {
+    background: #000;
+    color: #fff;
+    box-shadow: 0 0 8px rgba(0,0,0,0.4), 0 0 18px rgba(87,235,205,0.6);
+    transform: scale(1.12);
+}
