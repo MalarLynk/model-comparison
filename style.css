@@ -3,7 +3,6 @@ html, body {
     margin: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
     background: #000;
 }
 
@@ -94,29 +93,27 @@ body {
 
 /* ================== Table Wrapper ================== */
 .table-wrapper {
-    flex: 1 1 auto;        /* allow the wrapper to grow and shrink */
+    flex: 1 1 auto;
     border-radius: 12px;
-    overflow: hidden;      /* hide any outer overflow */
+    overflow: hidden;
     background: #0f1116;
-    display: flex;          /* use flex to allow scroll inside */
-    flex-direction: column; /* so table-scroll fills wrapper vertically */
+    display: flex;
+    flex-direction: column;
 }
 
 .table-scroll {
-    flex: 1 1 auto;        /* fill available height */
-    overflow: auto;        /* enable scrolling */
-    background: #0f1116;   /* same as wrapper */
+    flex: 1 1 auto;
+    overflow: auto;
+    background: #0f1116;
 }
 
 /* ================== Table ================== */
 table {
     border-collapse: collapse;
-    min-width: 1200px;
     width: max-content;
     min-width: 100%;
     color: #fff;
 
-        /* ✅ Animated Gradient Background */
     background: linear-gradient(-45deg,
         rgba(87, 235, 205, 0.15),
         rgba(94, 31, 242, 0.15),
@@ -127,18 +124,18 @@ table {
     animation: gradient 14s ease infinite;
 }
 
-/* Fixed column widths */
+/* Fixed widths for normal columns */
 table th:not(.sticky-col),
 table td:not(.sticky-col) {
     min-width: 220px;
-    max-width:220px;
-    width:220px;
+    max-width: 220px;
+    width: 220px;
 }
 
+/* 🔥 RESPONSIVE LEFT STICKY COLUMN */
 table .sticky-col {
-    min-width:180px;
-    max-width:180px;
-    width:180px;
+    min-width: 160px;
+    width: clamp(160px, 18vw, 260px);
 }
 
 /* Sticky header */
@@ -153,36 +150,43 @@ thead th {
 /* Sticky left column */
 .sticky-col {
     position: sticky;
-    left:0;
+    left: 0;
     background: rgba(22,24,36,.95);
-    z-index:5;
+    z-index: 5;
 }
 
 .sticky-top.sticky-col {
-    z-index:15;
+    z-index: 15;
 }
 
 /* Cells */
 th, td {
-    padding:14px 18px;
-    font-size:14px;
-    border-bottom:1px solid rgba(255,255,255,0.1);
-    border-right:1px solid rgba(255,255,255,0.05);
-    text-align:center;
-    white-space: nowrap;
+    padding: 14px 18px;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-right: 1px solid rgba(255,255,255,0.05);
+    text-align: center;
+    white-space: nowrap; /* keep other columns single-line */
 }
 
 tbody th {
-    text-align:left;
-    font-weight:600;
+    text-align: left;
+    font-weight: 600;
+}
+
+/* ✅ ALLOW WRAPPING ONLY IN LEFT COLUMN */
+tbody th.sticky-col {
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    line-height: 1.4;
 }
 
 tbody tr:nth-child(even) td {
     background: rgba(255,255,255,0.02);
 }
 
-/* ================== SECTION HEADER FIX ================== */
-
+/* ================== SECTION HEADER ================== */
 .section-header th {
     background: #ffffff !important;
     color: #000000 !important;
@@ -190,14 +194,12 @@ tbody tr:nth-child(even) td {
     font-size: 15px;
 }
 
-/* Override sticky background for section header */
 .section-header .sticky-col {
     background: #ffffff !important;
     color: #000000 !important;
     z-index: 15;
 }
 
-/* Flex layout inside header */
 .section-title {
     display: flex;
     align-items: center;
@@ -213,15 +215,12 @@ tbody tr:nth-child(even) td {
     border: 2px solid #000;
     background: #ffffff;
     color: #000000;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-
     transition: all 0.25s ease;
 }
 
@@ -235,108 +234,77 @@ tbody tr:nth-child(even) td {
 }
 
 /* ================== Collapsible ================== */
-
-tbody tr {
-    height: 48px;
+.section-row {
+    transition: all 0.35s ease;
 }
 
-.section-row td,
-.section-row th {
-    transition: opacity .25s ease;
+.section-row.collapsed {
+    height: 0 !important;
+    opacity: 0;
 }
 
 .section-row.collapsed td,
 .section-row.collapsed th {
-    opacity: 0;
-    pointer-events: none;
+    padding-top: 0;
+    padding-bottom: 0;
+    border: none;
+}
+
+.section-row.hidden {
+    display: none;
 }
 
 /* ================== Scrollbar ================== */
 .table-scroll::-webkit-scrollbar {
-    width:10px;
-    height:10px;
+    width: 10px;
+    height: 10px;
 }
 
 .table-scroll::-webkit-scrollbar-track {
     background: rgba(0,0,0,.25);
-    border-radius:10px;
+    border-radius: 10px;
 }
 
 .table-scroll::-webkit-scrollbar-thumb {
     background: linear-gradient(180deg, #EEA9CB 0%, #72C9B5 100%);
-    border-radius:100px;
+    border-radius: 100px;
 }
 
-.table-scroll::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(100deg, #EEA9CB 0%, #72C9B5 50%);
-}
-
+/* ================== Logo ================== */
 .logo-container {
-    text-align: center; /* center the logo */
-    margin-bottom: 12px; /* spacing between logo and title */
+    text-align: center;
+    margin-bottom: 12px;
 }
 
 .logo {
-    max-width: 100px; /* adjust to fit your design */
-    height: auto;      /* maintain aspect ratio */
-}
-
-.model-images-row td {
-    padding: 10px 0;
-    text-align: center;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.model-images-row .model-img {
-    max-width: 120px;   /* adjust as needed */
+    max-width: 100px;
     height: auto;
-    border-radius: 10px; /* optional: rounded corners */
-    transition: transform 0.3s ease;
 }
 
-.model-images-row .model-img:hover {
-    transform: scale(1.05); /* subtle zoom on hover */
-}
-
-/* Lightbox overlay */
-/* ================== Lightbox overlay ================== */
+/* ================== Lightbox ================== */
 .lightbox {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0,0,0,0.8); /* grayed out background */
+    background: rgba(0,0,0,0.8);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    overflow: hidden; /* important to prevent scrollbars */
 }
 
 .lightbox img {
-    width: auto;
-    height: auto;
-    max-width: 90vw;   /* scale to 90% of viewport width */
-    max-height: 90vh;  /* scale to 90% of viewport height */
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    width: 100vw;
+    height: 100vh;
     object-fit: contain;
 }
 
-html, body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    /* overflow: hidden;  <-- remove this line */
-    background: #000;
-}
-
 .lightbox.hidden {
-    display: none; /* hide when not active */
+    display: none;
 }
 
-/* Close button in corner */
 #closeLightbox {
     position: absolute;
     top: 20px;
@@ -353,12 +321,48 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.25s ease;
 }
 
-#closeLightbox:hover {
-    background: #000;
-    color: #fff;
-    box-shadow: 0 0 8px rgba(0,0,0,0.4), 0 0 18px rgba(87,235,205,0.6);
-    transform: scale(1.12);
+/* ================== Variant & Color Split ================== */
+.variant-cell,
+.color-cell {
+    padding: 0;
+}
+
+.variant-split,
+.color-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100%;
+}
+
+.variant-split span,
+.color-split span {
+    padding: 12px 0;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.15);
+}
+
+.variant-split span:last-child,
+.color-split span:last-child {
+    border-right: none;
+}
+
+/* ================== Model Images Row (RESTORED) ================== */
+
+.model-images-row td {
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.model-images-row .model-img {
+    max-width: 120px;      /* same as your original */
+    height: auto;
+    border-radius: 10px;   /* rounded corners */
+    transition: transform 0.3s ease;
+}
+
+.model-images-row .model-img:hover {
+    transform: scale(1.05); /* subtle zoom */
 }
