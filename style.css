@@ -163,10 +163,13 @@ thead th {
 th, td {
     padding: 14px 18px;
     font-size: 14px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    border-right: 1px solid rgba(255,255,255,0.05);
     text-align: center;
-    white-space: nowrap; /* keep other columns single-line */
+    white-space: nowrap;
+
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+
+    /* ✨ Stronger MAIN vertical column separator */
+    border-right: 2px solid rgba(255,255,255,0.25);
 }
 
 tbody th {
@@ -365,4 +368,20 @@ tbody tr:nth-child(even) td {
 
 .model-images-row .model-img:hover {
     transform: scale(1.05); /* subtle zoom */
+}
+
+/* ================== Disclaimer Row ================== */
+.disclaimer-row td {
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    line-height: 1.5;
+    font-size: 13px;
+    color: #d0d0d0;
+    padding: 16px 22px;
+    text-align: left;
+}
+
+.disclaimer-row p {
+    margin: 6px 0;
 }
